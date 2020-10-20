@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const http = require("http");
 
-
 // Sets up the Express App
 // =============================================================
 const app = express();
