@@ -13,6 +13,10 @@ app.use(express.json());
 
 const reservations = [];
 
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "home.html"));
+  });
+
 app.get("/api/reservations", function(req, res) {
     return res.json(reservations);
 });
