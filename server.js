@@ -14,5 +14,5 @@ app.use(express.json());
 const reservations = [];
 
 app.get("/api/reservations", function(req, res) {
-    return.json(reservations);
+    return res.json(reservations);
 }
