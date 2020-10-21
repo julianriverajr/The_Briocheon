@@ -25,12 +25,20 @@
         // Question: What does this code do?
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
-            var newReservation = {
+            //if empty form (syntax isnt correct)
+            if (!form){
+                alert("Sorry, you were not added to waitlist.");
+            }
+            // else if form is full make new array with info from form
+            else{
+                var newReservation = {
                 name: $("#name").val().trim(),
                 phoneNumber: $("#phoneNumber").val().trim(),
                 email: $("#email").val().trim(),
                 uniqueID: $("#uniqueID").val().trim()
             };
+            }
+            
 
             // Question: What does this code do??
             $.post("/api/characters", newCharacter)
