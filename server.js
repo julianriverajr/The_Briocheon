@@ -13,53 +13,53 @@ app.use(express.json());
 
 const reservations = [];
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "./public/home.html"));
 });
-app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "./public/reserve.html"));
+app.get("/reserve", function (req, res) {
+    res.sendFile(path.join(__dirname, "./public/reserve.html"));
 });
-app.get("/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "./public/tables.html"));
+app.get("/tables", function (req, res) {
+    res.sendFile(path.join(__dirname, "./public/tables.html"));
 });
 
-app.get("/api/reservations", function(req, res) {
+app.get("/api/reservations", function (req, res) {
     return res.json(reservations);
 });
 
-app.get("/api/reservations/:reservation", function(req, res) {
-  var chosen = req.params.reservation;
+app.get("/api/reservations/:reservation", function (req, res) {
+    var chosen = req.params.reservation;
 
-  console.log(chosen);
+    console.log(chosen);
 
-  for (var i = 0; i < reservations.length; i++) {
-    if (chosen === reservations[i].routeName) {
-      return res.json(reservations[i]);
+    for (var i = 0; i < reservations.length; i++) {
+        if (chosen === reservations[i].routeName) {
+            return res.json(reservations[i]);
+        }
     }
-  }
 
-  return res.json(false);
+    return res.json(false);
 });
 
 // Create New Reservations - takes in JSON input
-app.post("/api/reservations", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
-  var newReservation= req.body;
+app.post("/api/reservations", function (req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newReservation = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newReservation
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+    // Using a RegEx Pattern to remove spaces from newReservation
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newReservation);
+    console.log(newReservation);
 
-  characters.push(newReservation);
+    characters.push(newReservation);
 
-  res.json(newReservation);
+    res.json(newReservation);
 });
 
 
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
-  });
+});
